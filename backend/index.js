@@ -44,7 +44,7 @@ store.on("error",function(err){
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thishouldbeabettersecret!',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false, 
     cookie: {
