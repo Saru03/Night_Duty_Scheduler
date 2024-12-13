@@ -28,28 +28,55 @@ function DoctorsInfo() {
         { length: 2030 - 2024 + 1 },
         (_, index) => 2024 + index
     );
-
+    axios.defaults.withCredentials = true;
 
     useEffect(() => {
         const checkSession = async () => {
             try {
+                
                 const response = await axios.get('https://night-duty-scheduler.onrender.com/checkSession', {
-                    withCredentials: true 
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
+
                 if (response.data.loggedIn) {
                     setIsLoggedIn(true);
+                    
+                    
+                    try {
+                        const doctorsResponse = await axios.get('https://night-duty-scheduler.onrender.com/scheduler/doctors');
+                        setExistingDoctors(doctorsResponse.data.existingDoctors);
+                        setDoctors(doctorsResponse.data.existingDoctors.length > 0 
+                            ? doctorsResponse.data.existingDoctors 
+                            : [{ name: '', blockedDates: [] }]
+                        );
+                    } catch (fetchError) {
+                        console.error("Error fetching existing doctors:", fetchError);
+                        setMessage(fetchError.response?.data?.message || 'An error occurred while fetching doctors');
+                    }
                 } else {
+                    
                     navigate('/login');
                 }
             } catch (err) {
                 console.error('Session check error:', err);
+      
+                if (err.response) {
+                    console.error('Error response:', err.response.data);
+                    console.error('Error status:', err.response.status);
+                } else if (err.request) {
+                    console.error('No response received:', err.request);
+                } else {
+                    console.error('Error setting up request:', err.message);
+                }
                 navigate('/login');
             }
         };
 
         checkSession();
     }, [navigate]);
-
 
     const months = [
         'January', 'February', 'March', 'April',
