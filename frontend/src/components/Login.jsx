@@ -27,7 +27,7 @@ function Register() {
     e.preventDefault();
     const { username, password } = formData;
     try {
-      const res = await axios.post('http://localhost:3000/login', { username, password }, { withCredentials: true });
+      const res = await axios.post('https://night-duty-scheduler.onrender.com/login', { username, password }, { withCredentials: true });
       setMessage(res.data.message);
       navigate('/scheduler/doctorsinfo');
     } catch (err) {

@@ -101,7 +101,7 @@ const Schedule = () => {
     useEffect(() => {
         const checkSession = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/checkSession', {
+                const response = await axios.get('https://night-duty-scheduler.onrender.com/checkSession', {
                     withCredentials: true 
                 });
 
@@ -121,7 +121,7 @@ const Schedule = () => {
 
     const logout = async () => {
         try {
-            await axios.get('http://localhost:3000/logout', {}, { withCredentials: true });
+            await axios.get('https://night-duty-scheduler.onrender.com/logout', {}, { withCredentials: true });
             navigate('/login');
         } catch (err) {
             console.error('Logout error:', err.response?.data?.message || 'An error occurred during logout');

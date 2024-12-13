@@ -33,7 +33,7 @@ function DoctorsInfo() {
     useEffect(() => {
         const checkSession = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/checkSession', {
+                const response = await axios.get('https://night-duty-scheduler.onrender.com/checkSession', {
                     withCredentials: true 
                 });
                 if (response.data.loggedIn) {
@@ -86,7 +86,7 @@ function DoctorsInfo() {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:3000/scheduler/schedule', { selectedMonth, selectedYear, dutiesPerDay }, { withCredentials: true });
+            const response = await axios.post('https://night-duty-scheduler.onrender.com/scheduler/schedule', { selectedMonth, selectedYear, dutiesPerDay }, { withCredentials: true });
             const scheduleData = response.data.schedule
             setMessage(response.data.message)
             setSchedule(scheduleData)
@@ -105,7 +105,7 @@ function DoctorsInfo() {
         }
         try {
             console.log("Sending doctors data:", doctors);
-            const res = await axios.post('http://localhost:3000/scheduler/doctorsinfo', doctors, { withCredentials: true });
+            const res = await axios.post('https://night-duty-scheduler.onrender.com/scheduler/doctorsinfo', doctors, { withCredentials: true });
             setMessage(res.data.message);
         } catch (err) {
             console.error("Error adding doctors:", err.response?.data || err.message);
@@ -116,7 +116,7 @@ function DoctorsInfo() {
 
     const logout = async () => {
         try {
-            await axios.get('http://localhost:3000/logout', {}, { withCredentials: true })
+            await axios.get('https://night-duty-scheduler.onrender.com/logout', {}, { withCredentials: true })
             navigate('/login')
         }
         catch (err) {
@@ -131,7 +131,7 @@ function DoctorsInfo() {
     useEffect(() => {
         const fetchExistingDoctors = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/scheduler/doctors', { withCredentials: true })
+                const response = await axios.get('https://night-duty-scheduler.onrender.com/scheduler/doctors', { withCredentials: true })
                 setExistingDoctors(response.data.existingDoctors);
                 setDoctors(response.data.existingDoctors)
                 console.log(response.data.existingDoctors)
