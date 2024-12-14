@@ -1,3 +1,5 @@
+# Link to the website
+https://night-duty-scheduler.onrender.com
 # Night Duty Scheduler
 The Night Duty Scheduling Application optimizes and automates the assignment of night shifts for medical postgraduates. It uses a backtracking algorithm to ensure fair distribution of duties, accounting for blocked dates and minimizing workload gaps. The application provides a user-friendly interface for managing schedules and dynamically adjusts shifts to accommodate individual preferences, making the scheduling process more efficient and reducing manual intervention.
 This application was inspired by seeing my sister, a medical postgraduate, struggling with her night duty assignments. One afternoon I saw her getting frustrated over her duty being assigned on a family member's birthday despite informing before hand. An idea striked and hence night duty scheduler came into existence. After researching and a few trial and errors, i decided on backtracking algorithm for the schedules and managed to deploy it successfully
