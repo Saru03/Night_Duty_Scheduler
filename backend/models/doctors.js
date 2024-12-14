@@ -6,7 +6,6 @@ const doctorSchema = new Schema({
     name:{
         type:String,
         required:true,
-        unique:true
     },
     blockedDates:{
         type:[String],
