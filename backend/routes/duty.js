@@ -16,12 +16,10 @@ router.post('/doctorsinfo', isLoggedIn, async (req, res) => {
         }));
         
         await Doctors.insertMany(doctorsWithUserId);
-        // console.log("Doctors data received:", doctorsData);
         res.status(201).json({ message: 'Doctors added successfully' });
-        
     } catch (error) {
         console.error("Error saving doctors:", error);
-        res.status(500).json({ message: 'Error saving doctors', error });
+        res.status(500).json({ message: 'Error saving doctors', error: error.message, stack: error.stack });
     }
 });
 
